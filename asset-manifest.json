@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-desafio-q/static/css/main.c9a6b1f3.chunk.css",
-    "main.js": "/react-desafio-q/static/js/main.facbe0c9.chunk.js",
-    "main.js.map": "/react-desafio-q/static/js/main.facbe0c9.chunk.js.map",
+    "main.js": "/react-desafio-q/static/js/main.0ece5208.chunk.js",
+    "main.js.map": "/react-desafio-q/static/js/main.0ece5208.chunk.js.map",
     "runtime-main.js": "/react-desafio-q/static/js/runtime-main.083200e7.js",
     "runtime-main.js.map": "/react-desafio-q/static/js/runtime-main.083200e7.js.map",
     "static/js/2.2f0cd96a.chunk.js": "/react-desafio-q/static/js/2.2f0cd96a.chunk.js",
@@ -11,12 +11,13 @@
     "static/js/3.c445a318.chunk.js.map": "/react-desafio-q/static/js/3.c445a318.chunk.js.map",
     "index.html": "/react-desafio-q/index.html",
     "static/css/main.c9a6b1f3.chunk.css.map": "/react-desafio-q/static/css/main.c9a6b1f3.chunk.css.map",
-    "static/js/2.2f0cd96a.chunk.js.LICENSE.txt": "/react-desafio-q/static/js/2.2f0cd96a.chunk.js.LICENSE.txt"
+    "static/js/2.2f0cd96a.chunk.js.LICENSE.txt": "/react-desafio-q/static/js/2.2f0cd96a.chunk.js.LICENSE.txt",
+    "static/media/logo-querobolsa.1a57601b.svg": "/react-desafio-q/static/media/logo-querobolsa.1a57601b.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.083200e7.js",
     "static/js/2.2f0cd96a.chunk.js",
     "static/css/main.c9a6b1f3.chunk.css",
-    "static/js/main.facbe0c9.chunk.js"
+    "static/js/main.0ece5208.chunk.js"
   ]
 }
