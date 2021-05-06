@@ -1,0 +1,9 @@
+.breadcrumb{
+    font-size: 13px;
+    font-family: $fontBold;
+    color: $blue2;
+    margin: 30px $baseSpace;
+    svg {
+        margin-right:5px;
+    }
+}

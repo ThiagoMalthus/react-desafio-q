@@ -1,0 +1,28 @@
+@import 'config';
+@import 'mixins';
+@import 'header';
+@import 'menu';
+@import 'breadcrumb';
+@import 'footer';
+@import 'favorite_offer_list';
+@import 'long_offer';
+@import 'modal';
+@import 'short_offer';
+
+body {
+    margin: 0;
+    font-family: $fontRegular;
+    position: relative;
+    display:flex;
+    flex-flow: column;
+    background-color: $backgroundGray;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+.longOffer{
+    @include baseBox;
+    @include baseButton;
+    .buttonBox{
+        display: flex;
+        justify-content:space-between;
+        button:first-child{
+            margin-right: $baseSpace;
+        }
+    }
+    .mainButton{
+        flex-grow: 3;
+        background-color: $yellow1;
+        border-color: $yellow2;
+        color: $textBlack;
+        &:hover{
+            background-color: $yellow2;
+        }
+    }
+    .inactiveButton{
+        filter: saturate(0);
+        color: $blue2;
+        cursor: not-allowed;
+        &:hover{
+            background-color: $yellow1;
+            color: $blue2;
+            
+        }
+    }
+    h3{
+       font-size: 13px;
+       text-transform: uppercase;
+       font-family:$fontBold;
+       margin-bottom: 0px;
+    }
+    h4{
+        font-size: 16px;
+        color: $blue2;
+        margin: 5px 5px 15px 5px;
+    }
+    p{
+        margin-top: 5px;
+    }
+    h5{
+        margin-bottom: 10px;
+    }
+    .fullPrice{
+        text-decoration: line-through;
+        margin-bottom:5px;
+        font-size: 16px;
+    }
+    .rateBox{
+        .rateText{
+            font-family: $fontBold;
+        }
+    }
+    .priceWithDiscount{
+        color:$green;
+        font-size:19px;
+        font-family: $fontBold;
+    }
+    div{
+        &:nth-child(2){
+            padding: 5px 5px 5px 1px;
+            border-top: $grayBorder;
+            border-bottom: $grayBorder;
+        }
+    }
+}

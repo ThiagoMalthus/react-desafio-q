@@ -1,0 +1,65 @@
+footer{
+    z-index:1;
+    display: flex;
+    flex-flow: column;
+    background-color: $blue1;
+    color:$backgroundWhite;
+    text-align: center;
+    
+    h1{
+        font-size:16px;
+        display: flex;
+        font-family: $fontBold;
+        margin: 3px 0px 0px 0px;
+    }
+    p{
+        font-size:16px;
+        display: flex;
+        margin: 0px;
+    }
+    .icon{
+        font-size: 41px;
+    }
+    .copyright{
+        margin: 34px 0px;
+        font-family: $fontRegular;
+        svg{
+            font-size:18px;
+            margin: 0px 3px;
+        }
+    }
+    .item{
+        flex-grow:1;
+        background-color: $blue2;
+        padding: 21px 0px;
+        .textBox{
+            display: flex;
+            font-family: $fontBold;
+            flex-flow: column;
+            text-align: left;
+            margin-left:10px;
+            span{
+                font-family: $fontRegular;
+            }
+        }
+    }
+    div {
+        display: flex;
+        justify-content: center;
+    }
+    .itemGroup{
+        margin-top:4px;
+        flex-flow:row;
+        .item{
+            flex-flow:column;
+            .textBox{
+                margin: 8px 0px 0px 0px;
+                text-align: center;
+            }
+            &:nth-child(2){
+                margin: 0px 4px;
+            }
+        }
+        
+    }
+}

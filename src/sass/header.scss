@@ -1,0 +1,38 @@
+header{
+    background-color: $backgroundWhite;
+    display: flex;
+    max-height: 60px;
+    justify-content: center;
+    box-shadow: 0px 0px 4px 1px #e2e2e2;
+    z-index:2;
+    .logo{
+        margin: 8px 0px;
+        border-left: $grayBorder;
+        border-right: $grayBorder;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        img{
+        }
+    }
+    .iconBox{
+        margin: 8px;
+        font-size:24px;
+        color:$blue2;
+        text-align: center;
+        transition: color 0.3s;
+        flex-grow: 0;
+        .icon{
+        }
+        p{
+            margin: 0;
+            padding: 0;
+            font-family: $fontBold;
+            font-size: 13px;
+        }
+        &:hover{
+            color:$blue1;
+        }
+        
+    }
+}

@@ -1,0 +1,51 @@
+.shortOffer {
+    @include H2;
+    display: flex;
+    flex-flow:row;
+    flex-grow: 1;
+    border-top: $grayBorder;
+    padding: $baseSpace 0px;
+    h6{
+        font-family: $fontRegular;
+        font-size: 13px;
+    }
+    em{
+        font-family: $fontBold;
+        font-size:16px;
+        color: $green;
+        font-style: normal;
+    }
+    div:first-child{
+        display: flex;
+        flex-flow:row;
+        align-items:center;
+        justify-content:space-between;
+        width:100%;
+        img{
+            max-width:100px;
+            margin:auto;
+        }
+    }
+    div:last-child{
+        margin-top:$baseSpace;
+        display: flex;
+        flex-flow:column;
+        align-items:stretch;
+        justify-content:space-between;
+        width:100%;
+        div:first-child{
+            flex-flow: column;
+            align-items:stretch;
+            
+        }
+        div:last-child{
+            div{
+                flex-flow: row;
+                justify-content:flex-start;
+                em{
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}

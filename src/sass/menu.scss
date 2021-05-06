@@ -1,0 +1,25 @@
+.menu{
+    z-index:1;
+    display: flex;
+    background-color: $blue1;
+    color:$backgroundWhite;
+    font-family: $fontBold;
+    padding: $baseSpace;
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding: 0px;
+        display: flex;
+        flex-grow: 1;
+        li{
+            width:50%;
+            &:last-child{
+                text-align:right;
+            }
+            .icon{
+                margin-left:5px;
+                font-size:13px;
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+main{
+    padding: 0px $baseSpace;
+    section{
+        display: flex;
+        flex-flow: column;
+    }
+    h1{
+        font-size: 33px;
+        font-family: $fontBold;
+        margin:0px;
+    }
+    @include baseButton;
+    .boxContent{
+        @include baseBox;
+        color:$textBlack;
+        text-align: center;
+        cursor: pointer;
+        h2{
+            font-size:19px;
+            margin-bottom: 0px;
+        }
+        p{
+            margin-top:4px;
+            line-height: 20px;
+        }
+        svg{
+            font-size:64px;
+            color: $blue1;
+        }
+        
+        &:hover{
+            box-shadow: 0px 2px 5px 1px #4e4e4e;
+            background-color: $backgroundWhite;
+        }
+    }
+    .periodFilter{
+        display: flex;
+        flex-flow: column;
+        margin-bottom:19px;
+        @include baseButton;
+        button{
+            border-bottom-width:0px;
+            border-radius: 0px;
+            &:last-child{
+                border-bottom-width:2px;
+                border-radius: 0px 0px 3px 3px; 
+            }
+            &:first-child{
+                border-radius: 3px 3px 0px 0px;
+            }
+            &:hover{
+                background-color: $blue2;
+                color:$backgroundWhite;
+            }
+        }
+        .active {
+            background-color: $blue2;
+            color:$backgroundWhite;
+        }
+    }
+}
