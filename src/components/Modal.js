@@ -44,12 +44,16 @@ function Modal() {
               </label>
               <label>
                 <h5>COMO VOCÊ QUER ESTUDAR?</h5>
-                <input
+                <label>
+                  <input
                   name="isGoing"
                   type="checkbox"/> Presencial
-                <input
+                </label>
+                <label>
+                  <input
                   name="isGoing"
                   type="checkbox"/> Distancia
+                </label>
               </label>
               <label>
                 <h5>ATÉ QUANTO PODE PAGAR?</h5>
