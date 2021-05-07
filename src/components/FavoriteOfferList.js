@@ -77,7 +77,16 @@ class FavoriteOfferList extends Component {
     }, 300);
   }
   
-  
+  chooseButton(enabled){
+    let button;
+    if (enabled === true) {
+      console.log(enabled);
+      button = <button className="mainButton"><span>Ver oferta</span></button>;
+    } else {
+      button = <button className="inactiveButton"><span>Indisponível</span></button>;
+    }
+    return button;
+  }
 
   addFavtoStorage(favorites){
     window.localStorage.setItem('favorites',JSON.stringify(favorites));
@@ -89,6 +98,8 @@ render() {
     document.getElementById("modalOverlay").classList.remove("inactive");
   }
   
+  
+    
   return (
     <main>
       <section>
@@ -160,11 +171,8 @@ render() {
                   Excluir
                 </span>
               </button>
-              <button className="mainButton">
-                <span>
-                  Ver oferta
-                </span>
-              </button>
+              {console.log(offer)}
+              {this.chooseButton(offer.enabled)}
             </div>
           </article>
         ))}

@@ -25,9 +25,11 @@
         filter: saturate(0);
         color: $blue2;
         cursor: not-allowed;
+        background-color: $yellow1;
         &:hover{
             background-color: $yellow1;
             color: $blue2;
+            cursor: not-allowed;
             
         }
     }
