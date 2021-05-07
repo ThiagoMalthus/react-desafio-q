@@ -18,7 +18,6 @@ class Modal extends Component {
   
   getOffers(){
     let base = require('../db.json');
-    console.log(base);
     let offers = [];
     let n = 1;
     let arr = [];

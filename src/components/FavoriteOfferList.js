@@ -44,7 +44,12 @@ class FavoriteOfferList extends Component {
   }
 
   getFavorites(){
-    let favorites = JSON.parse(window.localStorage.getItem('favorites'));
+    let favorites = [];
+    if (JSON.parse(window.localStorage.getItem('favorites'))===null) {
+      this.addFavtoStorage(favorites);
+    } else {
+      favorites = JSON.parse(window.localStorage.getItem('favorites'));
+    }
     return favorites;
   }
 
