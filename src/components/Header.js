@@ -11,7 +11,7 @@ function Header() {
             <p>Ajuda</p>
         </div>
         <div className='logo'>
-            <img src={logoQuero} alt="image"/>
+            <img src={logoQuero} alt="Logo Quero Bolsa"/>
         </div>
         <div className='iconBox'>
             <div>

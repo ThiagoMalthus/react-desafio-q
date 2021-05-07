@@ -137,7 +137,7 @@
 
 
 .inactive{
-    display:none
+    display:none !important;
 }
 
 #modalOverlay{
@@ -147,5 +147,33 @@
     height:100%;
     background-color: $modalBackground;
     z-index: 3;
-    display: flex;
+    display: block;
 }
+
+@include baseButton;
+    .buttonBox{
+        display: flex;
+        justify-content:space-between;
+        button:first-child{
+            margin-right: $baseSpace;
+        }
+    }
+    .mainButton{
+        flex-grow: 3;
+        background-color: $yellow1;
+        border-color: $yellow2;
+        color: $textBlack;
+        &:hover{
+            background-color: $yellow2;
+        }
+    }
+    .inactiveButton{
+        filter: saturate(0);
+        color: $blue2;
+        cursor: not-allowed;
+        &:hover{
+            background-color: $yellow1;
+            color: $blue2;
+            
+        }
+    }

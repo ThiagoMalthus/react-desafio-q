@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faComments, faEnvelope, faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faInfoCircle,faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 function Footer() {
   return (
