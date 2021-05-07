@@ -38,6 +38,11 @@ class Modal extends Component {
       n=n+1;
       offers.push(arr);
     });
+    offers.sort(
+      (a, b) => {
+        return (a.university.name > b.university.name) ? 1 : ((b.university.name > a.university.name) ? -1 : 0);
+      }
+    )
     return offers;
   }
 
