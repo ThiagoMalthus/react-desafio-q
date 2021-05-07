@@ -172,7 +172,6 @@ class Modal extends Component {
     }else{
       filtered = this.state.favoriteOffers.filter(o => o.campus.city === city)
     }
-    console.log(this.state.favoriteOffers);
     if (course !== "vazio") {
       filtered = filtered.filter(o => o.course.name === course)
     }

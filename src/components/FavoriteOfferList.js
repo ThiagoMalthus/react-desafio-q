@@ -15,7 +15,9 @@ class FavoriteOfferList extends Component {
       favorites: favorites,
       semesters: semesters,
       favoriteOffers: favoriteOffers,
+      favoriteOffersFiltred: favoriteOffers,
     };
+    this.onChangeFilter = this.onChangeFilter.bind(this);
   }
   
   getOffers(){
@@ -70,7 +72,6 @@ class FavoriteOfferList extends Component {
         let arr = this.state.favorites.splice(this.state.favorites.indexOf(value),1);
         arr = this.getFavOffers(this.state.offers,this.state.favorites);
         this.setState({favoriteOffers: arr});
-        console.log(this.state.favorites);
         this.addFavtoStorage(this.state.favorites);
         window.location.reload();
       }
@@ -80,7 +81,6 @@ class FavoriteOfferList extends Component {
   chooseButton(enabled){
     let button;
     if (enabled === true) {
-      console.log(enabled);
       button = <button className="mainButton"><span>Ver oferta</span></button>;
     } else {
       button = <button className="inactiveButton"><span>Indisponível</span></button>;
@@ -92,13 +92,47 @@ class FavoriteOfferList extends Component {
     window.localStorage.setItem('favorites',JSON.stringify(favorites));
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  onChangeFilter(e){
+    let options = document.getElementsByClassName("semesterOptions");
+    let filtered = [];
+    Array.from(options).forEach((el) => {
+      el.classList.remove("active");
+    });
+    document.getElementById(e.target.id).classList.add("active");
+
+    if (document.getElementById(e.target.id).value === "todos"){
+      filtered = this.state.favoriteOffers;
+    } else {
+      filtered = this.state.favoriteOffers.filter(o => o.enrollment_semester === document.getElementById(e.target.id).value)
+    }
+    this.setState({ favoriteOffersFiltred: filtered})
+  }
+
+
+
+
+
+
 render() {
   //Abre Modal
   function openModal(){
     document.getElementById("modalOverlay").classList.remove("inactive");
   }
-  
-  
     
   return (
     <main>
@@ -111,11 +145,11 @@ render() {
         </p>
         
         <div className="periodFilter">
-          <button className="active">
+          <button id="stodos" className="semesterOptions active" value="todos" onClick={this.onChangeFilter}>
             Todos os Semestres
           </button>
           {this.state.semesters.map(semester=>(
-              <button key={semester}>
+              <button id={"s"+semester} className="semesterOptions" key={semester} value={semester} onClick={this.onChangeFilter}>
                 {semester.slice(5,7)}º semestre de {semester.slice(0,4)}
                </button>
           ))}
@@ -128,7 +162,7 @@ render() {
         </div>
 
         <div className="longOfferList">
-          {this.state.favoriteOffers.map(offer=>(
+          {this.state.favoriteOffersFiltred.map(offer=>(
             <article className="longOffer" key={offer.id} id={"LO"+offer.id}>
             <div>
               <div className="img">
@@ -171,7 +205,6 @@ render() {
                   Excluir
                 </span>
               </button>
-              {console.log(offer)}
               {this.chooseButton(offer.enabled)}
             </div>
           </article>
