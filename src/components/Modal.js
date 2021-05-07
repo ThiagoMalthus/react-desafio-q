@@ -9,11 +9,22 @@ class Modal extends Component {
     let offers = this.getOffers();
     let favorites = this.getFavorites();
     let favoriteOffers = this.getFavOffers(offers,favorites);
+    let cities = this.getCities(favoriteOffers);
+    let courses = this.getCourses(favoriteOffers);
+    let maxPay = this.getMaxPayment(offers);
     this.state = {
       offers: offers,
       favorites: favorites,
       favoriteOffers: favoriteOffers,
+      cities: cities,
+      courses: courses,
+      maxPayment: maxPay[0],
+      minPayment: maxPay[1],
+      filteredOffers: favoriteOffers,
+      city: "vazio",
+      course: "vazio",
     };
+    this.onChangeFilter = this.onChangeFilter.bind(this);
   }
   
   getOffers(){
@@ -28,6 +39,50 @@ class Modal extends Component {
       offers.push(arr);
     });
     return offers;
+  }
+
+  getCities(offers){
+    let cities = [];
+    offers.forEach(offer => {
+      if (cities.indexOf(offer.campus.city) === -1) {
+        cities.push(offer.campus.city);
+      }
+    });
+    cities.sort();
+    return cities
+  }
+
+  getMaxPayment(offers){
+    let maxPay = [];
+    offers.forEach(offer => {
+      if (maxPay.indexOf(offer.price_with_discount) === -1) {
+        maxPay.push(offer.price_with_discount);
+      }
+    });
+    let max = 0;
+    let min = 100000;
+    maxPay.forEach((pay)=>{
+      if (pay>max) {
+        max = pay;
+      }
+      if (pay<min) {
+        min = pay;
+      }
+    })
+    max=max+10;
+    min=min-10;
+    return [max,min];
+  }
+
+  getCourses(offers){
+    let courses = [];
+    offers.forEach(offer => {
+      if (courses.indexOf(offer.course.name) === -1) {
+        courses.push(offer.course.name);
+      }
+    });
+    courses.sort();
+    return courses
   }
 
   getFavorites(){
@@ -74,15 +129,66 @@ class Modal extends Component {
     })
     this.setState({favorites: favorites});
     this.addFavtoStorage(favorites);
-    this.closeModal();
+    this.smoothscroll();
+    document.getElementById("modalOverlay").classList.add("fadeout");
+    setTimeout(() => {  
+      window.location.reload();
+    }, 1000);
+
   }
 
   closeModal(){
     document.getElementById("modalOverlay").classList.add("inactive");
   }
+
+  smoothscroll(){
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  onChangeFilter(e){
+    this.setState({ [e.target.name]: e.target.value})
+    this.offerFilter(e.target.name,e.target.value);
+      
+  }
+
+  offerFilter(name,value){
+    let city = document.getElementById("cityFilter").value;
+    let course = document.getElementById("courseFilter").value;
+    let maxPayment = document.getElementById("maxPaymentFilter").value;
+    let presential = document.getElementById("presential").checked;
+    let distant = document.getElementById("distant").checked;
+
+    let filtered = [];
+    if (city==="vazio") {
+      filtered = this.state.favoriteOffers
+    }else{
+      filtered = this.state.favoriteOffers.filter(o => o.campus.city === city)
+    }
+    console.log(this.state.favoriteOffers);
+    if (course !== "vazio") {
+      filtered = filtered.filter(o => o.course.name === course)
+    }
+    if (maxPayment !== "vazio") {
+      filtered = filtered.filter(o => o.price_with_discount <= maxPayment)
+    }
+    if (presential === true && distant === false){
+      filtered = filtered.filter(o => o.course.kind === "Presencial")
+    }
+    if (presential === false && distant === true){
+      filtered = filtered.filter(o => o.course.kind === "EaD")
+    }
+    
+    this.setState({ filteredOffers: filtered})
+  }
+    
   
 
 render() {
+
+  var max = this.getMaxPayment(this.state.offers);
 
   return (
     <section id="modalOverlay" className="inactive" >
@@ -104,20 +210,22 @@ render() {
               <label>
                 <h5>SELECIONE SUA CIDADE</h5>
                 <div className="formField">
-                  <select name="select" defaultValue="valor2">
-                    <option value="valor1">Valor 1</option>
-                    <option value="valor2">Valor 2</option>
-                    <option value="valor3">Valor 3</option>
+                  <select id="cityFilter" name="city" value={this.state.city} onChange={this.onChangeFilter}>
+                    <option value="vazio"></option>
+                    {this.state.cities.map(city => (
+                      <option value={city}>{city}</option>
+                    ))}
                   </select>
                 </div>
               </label>
               <label>
                 <h5>SELECIONE O CURSO DE SUA PREFERÊNCIA</h5>
                 <div className="formField">
-                  <select name="select" defaultValue="valor2">
-                    <option value="valor1">Valor 1</option>
-                    <option value="valor2">Valor 2</option>
-                    <option value="valor3">Valor 3</option>
+                  <select id="courseFilter" name="course" value={this.state.course} onChange={this.onChangeFilter}>
+                      <option value="vazio"> </option>
+                      {this.state.courses.map(course => (
+                        <option value={course}>{course}</option>
+                      ))}
                   </select>
                 </div>
               </label>
@@ -125,19 +233,21 @@ render() {
                 <h5>COMO VOCÊ QUER ESTUDAR?</h5>
                 <label>
                   <input
-                  name="isGoing"
-                  type="checkbox"/> Presencial
+                  id="presential"
+                  name="presential"
+                  type="checkbox" onChange={this.onChangeFilter}/> Presencial
                 </label>
                 <label>
                   <input
-                  name="isGoing"
-                  type="checkbox"/> Distancia
+                  id="distant"
+                  name="distant"
+                  type="checkbox" onChange={this.onChangeFilter}/> Distancia
                 </label>
               </label>
               <label>
                 <h5>ATÉ QUANTO PODE PAGAR?</h5>
-                <span>R$ 10.000</span>
-                <input type="range" min="1" max="10000" className="slider" id="myRange"></input>
+                <span>R$ {this.state.maxPayment}</span>
+                <input type="range" min={max[1]-1} max={max[0]+1} className="slider" id="maxPaymentFilter"  name="maxPayment" defaultValue={max[0]+10} onChange={this.onChangeFilter}/>
               </label>
             </form>
             <div className="orderLabel">
@@ -160,7 +270,7 @@ render() {
               </div>
             </div>
             <section className="offerList">
-              {this.state.favoriteOffers.map(offer => (
+              {this.state.filteredOffers.map(offer => (
                 <article className="shortOffer" key={offer.id} onClick={() => this.changeFavored(offer.id)}>
                 <div>
                   <input
@@ -168,7 +278,6 @@ render() {
                   name="favorited"
                   type="checkbox"
                   checked={offer.favorited}
-                  //onChange={this.handleInputChange}
                   />
                   <img src={offer.university.logo_url} alt="logoInstituição"/>
                 </div>

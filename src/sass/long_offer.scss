@@ -1,4 +1,8 @@
 .longOffer{
+    opacity: 1;
+    transition: all 0.3s ease-in !important;
+    height:490px;
+    overflow: hidden;
     @include baseBox;
     @include baseButton;
     .buttonBox{
@@ -25,6 +29,18 @@
             background-color: $yellow1;
             color: $blue2;
             
+        }
+    }
+    .img{
+        height: 130px;
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 200px;
+        margin:auto;
+        img{
+            display: inline-block
         }
     }
     h3{
@@ -66,4 +82,9 @@
             border-bottom: $grayBorder;
         }
     }
+}
+
+.fadeout{
+    opacity:0;
+    height:0px;
 }

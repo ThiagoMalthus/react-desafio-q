@@ -63,13 +63,18 @@ class FavoriteOfferList extends Component {
 
   
   removeUniqueFav(value){
-    if (this.state.favorites.indexOf(value) !== -1) {
-      let arr = this.state.favorites.splice(this.state.favorites.indexOf(value),1);
-      arr = this.getFavOffers(this.state.offers,this.state.favorites);
-      this.setState({favoriteOffers: arr});
-      console.log(this.state.favorites);
-      this.addFavtoStorage(this.state.favorites);
-    }
+    var element = document.getElementById("LO"+value);
+    element.classList.add("fadeout")
+    setTimeout(() => {  
+      if (this.state.favorites.indexOf(value) !== -1) {
+        let arr = this.state.favorites.splice(this.state.favorites.indexOf(value),1);
+        arr = this.getFavOffers(this.state.offers,this.state.favorites);
+        this.setState({favoriteOffers: arr});
+        console.log(this.state.favorites);
+        this.addFavtoStorage(this.state.favorites);
+        window.location.reload();
+      }
+    }, 300);
   }
   
   
@@ -113,9 +118,11 @@ render() {
 
         <div className="longOfferList">
           {this.state.favoriteOffers.map(offer=>(
-            <article className="longOffer" key={offer.id}>
+            <article className="longOffer" key={offer.id} id={"LO"+offer.id}>
             <div>
-              <img src={offer.university.logo_url} alt={offer.university.name}/>
+              <div className="img">
+                <img src={offer.university.logo_url} alt={offer.university.name}/>
+              </div>
               <h3>
                 {offer.university.name}
               </h3>
@@ -164,8 +171,6 @@ render() {
         </div>
 
       </section>
-      
-      
     </main>
   );
 }}
