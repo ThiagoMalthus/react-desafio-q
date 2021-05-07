@@ -11,3 +11,5 @@ Existindo previamente o node, npm, react. O único pacote diferenciado é o de f
 ### `npm start` para iniciar
 
 ### `npm run deploy` para subir para o GithubPages
+
+Acessável pelo GitHubPages: https://thiagomalthus.github.io/react-desafio-q/
